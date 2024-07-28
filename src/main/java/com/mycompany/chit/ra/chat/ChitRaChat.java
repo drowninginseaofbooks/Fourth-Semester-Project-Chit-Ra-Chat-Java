@@ -19,9 +19,7 @@ public class ChitRaChat extends JFrame{
         LoginRegisterPanel lr = new LoginRegisterPanel();
         
         add(lr);
-        
-        System.out.println("Hello World");
-        
+       
         setResizable(false);
         setSize(1080, 720);
         setVisible(true);
