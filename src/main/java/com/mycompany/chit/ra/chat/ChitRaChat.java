@@ -20,6 +20,7 @@ public class ChitRaChat extends JFrame{
         
         add(lr);
         
+        System.out.println("Hello World");
         
         setResizable(false);
         setSize(1080, 720);
