@@ -2,21 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 
-/**
- *
- * @author hiros
- */
 public class LoginRegisterPanel extends JPanel{
     LoginRegisterPanel(){
-        super();
-        
-        //MP3Player player = new MP3Player(new File("C:\\Users\\hiros\\OneDrive\\Documents\\NetBeansProjects\\Chit-Ra-Chat\\src\\main\\java\\assets"));
-        
-        //player.play();
-        //Thread.sleep(100000);
-        
         this.setBackground(Color.BLACK);
 
         setLayout(new GridBagLayout());
@@ -48,13 +36,41 @@ public class LoginRegisterPanel extends JPanel{
         logIn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                logIn.setBackground(Color.WHITE);
-                
+                logIn.setBackground(Color.GREEN);
+                logIn.setForeground(Color.WHITE);
+            }
+
+            
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Login login = new Login();
+                add(login);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 logIn.setBackground(Color.WHITE);
+                logIn.setForeground(Color.BLACK);
+            }
+        });
+
+        signUp.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                signUp.setBackground(Color.GREEN);
+                signUp.setForeground(Color.WHITE);
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Signup signup = new Signup();
+                add(signup);    
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                signUp.setBackground(Color.WHITE);
+                signUp.setForeground(Color.BLACK);
             }
         });
 

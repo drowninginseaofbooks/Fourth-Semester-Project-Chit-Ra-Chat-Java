@@ -26,11 +26,15 @@ public class Login extends JFrame {
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
-        JTextField userText = new JTextField("            Username");
+        JTextField userText = new JTextField("Username");
         userText.setPreferredSize(new Dimension(290, 50));
+        userText.setHorizontalAlignment(JTextField.CENTER);
+
         JPasswordField passwordText = new JPasswordField("Password");
         passwordText.setPreferredSize(new Dimension(290, 50));
-        JButton signupButton = new JButton("Login");
+        passwordText.setHorizontalAlignment(JTextField.CENTER);
+
+        JButton signupButton = new JButton("LOGIN");
         signupButton.setPreferredSize(new Dimension(200, 30)); // Set the preferred size for the button
         signupButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -59,12 +63,12 @@ public class Login extends JFrame {
 
 
        JPanel leftpanel = new JPanel(new GridLayout(6,1,10,20));
-        leftpanel.setBorder(BorderFactory.createEmptyBorder(250, 30, 100, 0));
+        leftpanel.setBorder(BorderFactory.createEmptyBorder(250, 30, 10, 0));
         leftpanel.setBackground(new Color(255, 203, 205)); // Custom background color
         leftpanel.setOpaque(true); // Ensure the background color is visible
         leftpanel.setPreferredSize(new Dimension(520, frame.getHeight())); // Set the preferred size
-        JLabel welcome = new JLabel("Welcome Back!",40,Color.WHITE,Font.BOLD);
-        JLabel welcome1= new JLabel("To keep connected with us please login",20,Color.WHITE,Font.BOLD);
+        JLabel welcome = new JLabel("WELCOME BACK!",40,Color.WHITE,Font.BOLD);
+        JLabel welcome1= new JLabel("<html>TO KEEP CONNECTED WITH US<br> PLEASE LOGIN</html>",20,Color.WHITE,Font.BOLD);
        
 
        
