@@ -158,7 +158,7 @@ public class Signup extends JFrame {
             addFocusListener(new FocusListener() {
                 @Override
                 public void focusGained(FocusEvent e) {
-                    if (getText().equals("")) {
+                    if (getPassword().equals("")) {
                         setText(hint);
                         setForeground(Color.GRAY);
                     }
@@ -166,7 +166,7 @@ public class Signup extends JFrame {
 
                 @Override
                 public void focusLost(FocusEvent e) {
-                    if (getText().equals(hint)) {
+                    if (getPassword().equals(hint)) {
                         setText("");
                         setForeground(Color.BLACK);
                     }
