@@ -90,14 +90,14 @@ public class Signup extends JFrame {
             setFont(new Font("Sergoe UI", Font.BOLD, 20));
             setOpaque(false);
             setText(hint);
-            setForeground(Color.BLUE);
+            setForeground(Color.GRAY);
             setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             addFocusListener(new FocusListener() {
                 @Override
                 public void focusGained(FocusEvent e) {
                     if (getText().equals("")) {
                         setText(hint);
-                        setForeground(Color.BLUE);
+                        setForeground(Color.GRAY);
                     }
                 }
 
@@ -142,14 +142,14 @@ public class Signup extends JFrame {
             setFont(new Font("Sergoe UI", Font.BOLD, 20));
             setOpaque(false);
             setText(hint);
-            setForeground(Color.BLUE);
+            setForeground(Color.GRAY);
             setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             addFocusListener(new FocusListener() {
                 @Override
                 public void focusGained(FocusEvent e) {
                     if (getText().equals("")) {
                         setText(hint);
-                        setForeground(Color.BLUE);
+                        setForeground(Color.GRAY);
                     }
                 }
 

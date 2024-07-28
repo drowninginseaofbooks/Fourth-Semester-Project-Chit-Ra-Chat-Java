@@ -92,14 +92,14 @@ public class Login extends JFrame {
              setFont(new Font("Sergeo UI",Font.BOLD,20));
              setOpaque(false);
              setText(hint);
-             setForeground(Color.BLUE);
+             setForeground(Color.GRAY);
              setBorder(BorderFactory.createEmptyBorder(TOP,5,BOTTOM,5));
              addFocusListener(new FocusListener() {
                  @Override
                  public void focusGained(FocusEvent e) {
                      if(getText().equals("")){
                          setText(hint);
-                         setForeground(Color.BLUE);
+                         setForeground(Color.GRAY);
                      }
                  }
      
@@ -146,14 +146,14 @@ public class Login extends JFrame {
              setFont(new Font("Sergeo UI",Font.BOLD,20));
              setOpaque(false);
              setText(hint);
-             setForeground(Color.BLUE);
+             setForeground(Color.GRAY);
              setBorder(BorderFactory.createEmptyBorder(TOP,5,BOTTOM,5));
              addFocusListener(new FocusListener() {
                  @Override
                  public void focusGained(FocusEvent e) {
                      if(getText().equals("")){
                          setText(hint);
-                         setForeground(Color.BLUE);
+                         setForeground(Color.GRAY);
                      }
                  }
      
