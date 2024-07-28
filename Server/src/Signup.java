@@ -18,27 +18,38 @@ public class Signup extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(150, 0, 150, 100));
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JTextField userText1 = new JTextField("           FirstName");
-        userText1.setPreferredSize(new Dimension(290, 40));
-        JTextField userText2 = new JTextField("           LastName");
-        userText2.setPreferredSize(new Dimension(290, 40));
-        JTextField emailText = new JTextField("             Email");
+        JTextField firstName = new JTextField("FirstName");
+        firstName.setPreferredSize(new Dimension(290, 40));
+        firstName.setHorizontalAlignment(JTextField.CENTER);
+
+        JTextField lastName = new JTextField("LastName");
+        lastName.setPreferredSize(new Dimension(290, 40));
+        lastName.setHorizontalAlignment(JTextField.CENTER);
+
+        JTextField emailText = new JTextField("Email");
         emailText.setPreferredSize(new Dimension(290, 40));
-        JTextField userText = new JTextField("            Username");
+        emailText.setHorizontalAlignment(JTextField.CENTER);
+
+        JTextField userText = new JTextField("Username");
         userText.setPreferredSize(new Dimension(290, 40));
+        userText.setHorizontalAlignment(JTextField.CENTER);
+
         JPasswordField passwordText = new JPasswordField("Password");
         passwordText.setPreferredSize(new Dimension(290, 40));
+        passwordText.setHorizontalAlignment(JTextField.CENTER);
+
         JPasswordField confirmPasswordText = new JPasswordField("Confirm password");
         confirmPasswordText.setPreferredSize(new Dimension(290, 40));
+        confirmPasswordText.setHorizontalAlignment(JTextField.CENTER);
         
         JButton signupButton = new JButton("Signup");
         signupButton.setPreferredSize(new Dimension(200, 30)); // Set the preferred size for the button
         signupButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        panel.add(userText1);
+        panel.add(firstName);
         // Add spacing between components
         panel.add(Box.createVerticalStrut(10)); 
-        panel.add(userText2);
+        panel.add(lastName);
         panel.add(Box.createVerticalStrut(10));
         panel.add(emailText);
         panel.add(Box.createVerticalStrut(10));
@@ -54,23 +65,23 @@ public class Signup extends JFrame {
 
         signupButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String username1 = userText1.getText();
-                String username2 = userText1.getText();
+                String fName = firstName.getText();
+                String lName = lastName.getText();
                 String email = emailText.getText();
-                String username3 = userText.getText();
+                String username = userText.getText();
                 String password = new String(passwordText.getPassword());
                 String confirmPassword = new String(confirmPasswordText.getPassword());
-                JOptionPane.showMessageDialog(panel, "Signup clicked");
+                JOptionPane.showMessageDialog(null, "SUCCESSFULLY REGISTERED");
             }
         });
 
         JPanel leftPanel = new JPanel(new GridLayout(6, 1, 10, 20));
-        leftPanel.setBorder(BorderFactory.createEmptyBorder(250, 30, 100, 0));
+        leftPanel.setBorder(BorderFactory.createEmptyBorder(250, 30, 10, 0));
         leftPanel.setBackground(new Color(255, 203, 205)); // Custom background color
         leftPanel.setOpaque(true); // Ensure the background color is visible
         leftPanel.setPreferredSize(new Dimension(520, frame.getHeight())); // Set the preferred size
-        JLabel welcome = new JLabel("Hello, Friend!", 40, Color.WHITE, Font.BOLD);
-        JLabel welcome1 = new JLabel("Enter your details and start your journey with us", 20, Color.WHITE, Font.BOLD);
+        JLabel welcome = new JLabel("<html><h1>HELLO, FRIEND!</h1></html>", 10, Color.WHITE, Font.BOLD);
+        JLabel welcome1 = new JLabel("<html><h1>ENTER YOUR DETAILS<br> AND START JOURNEY WITH US!</h1></html>", 10, Color.WHITE, Font.BOLD);
 
         leftPanel.add(welcome, BorderLayout.CENTER);
         leftPanel.add(welcome1, BorderLayout.WEST);
