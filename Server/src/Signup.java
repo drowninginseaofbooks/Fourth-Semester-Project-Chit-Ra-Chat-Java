@@ -18,11 +18,11 @@ public class Signup extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(150, 0, 150, 100));
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JTextField firstName = new JTextField("FirstName");
+        JTextField firstName = new JTextField("First Name");
         firstName.setPreferredSize(new Dimension(290, 40));
         firstName.setHorizontalAlignment(JTextField.CENTER);
 
-        JTextField lastName = new JTextField("LastName");
+        JTextField lastName = new JTextField("Last Name");
         lastName.setPreferredSize(new Dimension(290, 40));
         lastName.setHorizontalAlignment(JTextField.CENTER);
 
@@ -38,11 +38,11 @@ public class Signup extends JFrame {
         passwordText.setPreferredSize(new Dimension(290, 40));
         passwordText.setHorizontalAlignment(JTextField.CENTER);
 
-        JPasswordField confirmPasswordText = new JPasswordField("Confirm password");
+        JPasswordField confirmPasswordText = new JPasswordField("Confirm Password");
         confirmPasswordText.setPreferredSize(new Dimension(290, 40));
         confirmPasswordText.setHorizontalAlignment(JTextField.CENTER);
         
-        JButton signupButton = new JButton("Signup");
+        JButton signupButton = new JButton("SIGN UP");
         signupButton.setPreferredSize(new Dimension(200, 30)); // Set the preferred size for the button
         signupButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -71,7 +71,13 @@ public class Signup extends JFrame {
                 String username = userText.getText();
                 String password = new String(passwordText.getPassword());
                 String confirmPassword = new String(confirmPasswordText.getPassword());
-                JOptionPane.showMessageDialog(null, "SUCCESSFULLY REGISTERED");
+
+                if(fName=="" && lName=="" && email=="" && username=="" && password=="" && confirmPassword==""){
+                    JOptionPane.showMessageDialog(null, "SUCCESSFULLY REGISTERED");     
+                    new App();
+                }else{
+                    JOptionPane.showMessageDialog(null, "TEXT FIELD CANNOT BE LEFT EMPTY");
+                }
             }
         });
 
