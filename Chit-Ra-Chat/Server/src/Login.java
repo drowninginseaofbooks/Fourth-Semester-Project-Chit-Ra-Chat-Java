@@ -57,12 +57,12 @@ public class Login extends JFrame {
 
         signupButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                String email = emailText.getText();
                 String userName1 = userText.getText();
                 String password = new String(passwordText.getPassword());
                 JOptionPane.showMessageDialog(panel,"Login clicked");
             }
-        });
+        }); 
 
         
 
