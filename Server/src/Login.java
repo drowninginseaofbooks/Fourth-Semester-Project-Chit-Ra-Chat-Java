@@ -1,12 +1,11 @@
 
     import java.awt.*;
-
 //import java.awt.event.MouseEvent;
 //import java.awt.event.MouseListener;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.SQLException;
 
 
 
@@ -53,13 +52,28 @@ public class Login extends JFrame {
         signupButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
+                Database database =new Database();
                 String userName1 = userText.getText();
-                String password = new String(passwordText.getPassword());
+                String password = new String(passwordText.getPassword());                     
+                try 
+                {
+                  if( database.loginUser(userName1, password))
+                  {
+                    //--goto main page
+                  }
+                  else
+                  {
+                    JOptionPane.showMessageDialog(null,"WRONG EMAIL OT PASSWORD");
+                  }
+                }
+                catch (SQLException e1) 
+                {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
                 JOptionPane.showMessageDialog(panel,"Login clicked");
             }
         });
-
-        
 
 
        JPanel leftpanel = new JPanel(new GridLayout(6,1,10,20));
