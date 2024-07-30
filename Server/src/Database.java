@@ -1,6 +1,7 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 //import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,5 +38,17 @@ public class Database{
            e.printStackTrace();
         }
     } 
+
+    public void signUser(String firstName, String lastName, String email, String userName,String password) throws SQLException
+    {
+        PreparedStatement insertStatement= conn.prepareStatement("INSERT into users (FirstName,LastName,Email,UserName,Password) values (?,?,?,?,?)");
+        insertStatement.setString(1, firstName);
+        insertStatement.setString(2, lastName);
+        insertStatement.setString(3, email);
+        insertStatement.setString(4, userName);
+        insertStatement.setString(5, password);
+        insertStatement.executeUpdate();
+
+    }
 }   
   
