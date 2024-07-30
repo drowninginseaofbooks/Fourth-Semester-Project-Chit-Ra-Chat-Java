@@ -4,9 +4,24 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.sql.SQLException;
 
 public class Signup extends JFrame {
+
+    // private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" +
+    //                                           "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+    //  public static boolean isValidEmail(String email) {
+    //     if (email == null) {
+    //         return false;
+    //     }
+        
+    //     Pattern pattern = Pattern.compile(EMAIL_REGEX);
+    //     Matcher matcher = pattern.matcher(email);
+    //     return matcher.matches();
+    // }
 
     public Signup() {
         JFrame frame = new JFrame("Signup Page");
@@ -22,26 +37,63 @@ public class Signup extends JFrame {
         JTextField firstName = new JTextField("First Name");
         firstName.setPreferredSize(new Dimension(290, 40));
         firstName.setHorizontalAlignment(JTextField.CENTER);
+        firstName.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                firstName.setText("");
+            }
+        });
 
         JTextField lastName = new JTextField("Last Name");
         lastName.setPreferredSize(new Dimension(290, 40));
         lastName.setHorizontalAlignment(JTextField.CENTER);
+        lastName.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                lastName.setText("");
+            }
+        });
 
         JTextField emailText = new JTextField("Email");
         emailText.setPreferredSize(new Dimension(290, 40));
         emailText.setHorizontalAlignment(JTextField.CENTER);
+        emailText.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                emailText.setText("");
+            }
+        });
 
         JTextField userText = new JTextField("Username");
         userText.setPreferredSize(new Dimension(290, 40));
         userText.setHorizontalAlignment(JTextField.CENTER);
+        userText.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                userText.setText("");
+            }
+        });
 
-        JPasswordField passwordText = new JPasswordField("Password");
+        JPasswordField passwordText = new JPasswordField("");
+        passwordText.setText("Password");
         passwordText.setPreferredSize(new Dimension(290, 40));
         passwordText.setHorizontalAlignment(JTextField.CENTER);
+        passwordText.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                passwordText.setText("");
+            }
+        });
 
         JPasswordField confirmPasswordText = new JPasswordField("Confirm Password");
         confirmPasswordText.setPreferredSize(new Dimension(290, 40));
         confirmPasswordText.setHorizontalAlignment(JTextField.CENTER);
+        confirmPasswordText.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                confirmPasswordText.setText("");
+            }
+        });
         
         JButton signupButton = new JButton("SIGN UP");
         signupButton.setPreferredSize(new Dimension(200, 30)); // Set the preferred size for the button
@@ -74,23 +126,23 @@ public class Signup extends JFrame {
                 String password = new String(passwordText.getPassword());
                 String confirmPassword = new String(confirmPasswordText.getPassword());
 
-                if(fName==" " && lName=="" && email=="" && username=="" && password=="" && confirmPassword==""){
-                    JOptionPane.showMessageDialog(null, "SUCCESSFULLY REGISTERED");     
-                    new App();
+                if(fName!=null && !fName.trim().isEmpty() && lName!=null && !lName.trim().isEmpty() && email!=null && !email.trim().isEmpty() 
+                && username!=null && !username.trim().isEmpty() && password!=null && !password.trim().isEmpty() && confirmPassword!=null && !confirmPassword.trim().isEmpty()){
+                    if(!email.contains("@")){
+                        JOptionPane.showMessageDialog(null, "INVALID EMAIL");
+                    } else{
+                        try{
+                            database.signUser(fName, lName, email, username,password);
+                        }catch( SQLException e1){
+                            e1.printStackTrace();
+                        }
+                        JOptionPane.showMessageDialog(null, "SUCCESSFULLY REGISTERED");     
+                        new App();
+                    }
                 }else{
-                    JOptionPane.showMessageDialog(null, "TEXT FIELD CANNOT BE LEFT EMPTY");
-                }
+                    JOptionPane.showMessageDialog(null, "TEXT FIELD CANNOT BE LEFT EMPTY");     
 
-               try
-                {
-                      database.signUser(fName, lName, email, username,password);
                 }
-
-                catch( SQLException e1)
-                {
-                    e1.printStackTrace();
-                }
-
                
             }
         });
