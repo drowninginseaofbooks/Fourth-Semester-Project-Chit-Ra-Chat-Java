@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.SQLException;
 
 public class Signup extends JFrame {
 
@@ -65,6 +66,7 @@ public class Signup extends JFrame {
 
         signupButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                Database database=new Database(); 
                 String fName = firstName.getText();
                 String lName = lastName.getText();
                 String email = emailText.getText();
@@ -72,12 +74,24 @@ public class Signup extends JFrame {
                 String password = new String(passwordText.getPassword());
                 String confirmPassword = new String(confirmPasswordText.getPassword());
 
-                if(fName=="" && lName=="" && email=="" && username=="" && password=="" && confirmPassword==""){
+                if(fName==" " && lName=="" && email=="" && username=="" && password=="" && confirmPassword==""){
                     JOptionPane.showMessageDialog(null, "SUCCESSFULLY REGISTERED");     
                     new App();
                 }else{
                     JOptionPane.showMessageDialog(null, "TEXT FIELD CANNOT BE LEFT EMPTY");
                 }
+
+               try
+                {
+                      database.signUser(fName, lName, email, username,password);
+                }
+
+                catch( SQLException e1)
+                {
+                    e1.printStackTrace();
+                }
+
+               
             }
         });
 
