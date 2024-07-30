@@ -133,11 +133,11 @@ public class Signup extends JFrame {
                     } else{
                         try{
                             database.signUser(fName, lName, email, username,password);
+                            JOptionPane.showMessageDialog(null, "SUCCESSFULLY REGISTERED");     
+                            new App();
                         }catch( SQLException e1){
                             e1.printStackTrace();
                         }
-                        JOptionPane.showMessageDialog(null, "SUCCESSFULLY REGISTERED");     
-                        new App();
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "TEXT FIELD CANNOT BE LEFT EMPTY");     

@@ -8,7 +8,6 @@ import java.awt.geom.RoundRectangle2D;
 import java.sql.SQLException;
 
 
-
 public class Login extends JFrame {
     
 
@@ -28,10 +27,22 @@ public class Login extends JFrame {
         JTextField userText = new JTextField("Username");
         userText.setPreferredSize(new Dimension(290, 50));
         userText.setHorizontalAlignment(JTextField.CENTER);
+        userText.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                userText.setText("");
+            }
+        });
 
         JPasswordField passwordText = new JPasswordField("Password");
         passwordText.setPreferredSize(new Dimension(290, 50));
         passwordText.setHorizontalAlignment(JTextField.CENTER);
+        passwordText.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                passwordText.setText("");
+            }
+        });
 
         JButton signupButton = new JButton("LOGIN");
         signupButton.setPreferredSize(new Dimension(200, 30)); // Set the preferred size for the button
@@ -59,11 +70,12 @@ public class Login extends JFrame {
                 {
                   if( database.loginUser(userName1, password))
                   {
+                    JOptionPane.showMessageDialog(null, "LOGGED IN");
                     //--goto main page
                   }
                   else
                   {
-                    JOptionPane.showMessageDialog(null,"WRONG EMAIL OT PASSWORD");
+                    JOptionPane.showMessageDialog(null,"WRONG EMAIL OR PASSWORD");
                   }
                 }
                 catch (SQLException e1) 
@@ -71,7 +83,6 @@ public class Login extends JFrame {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
-                JOptionPane.showMessageDialog(panel,"Login clicked");
             }
         });
 
