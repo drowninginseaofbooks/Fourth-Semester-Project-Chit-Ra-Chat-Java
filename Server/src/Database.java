@@ -2,8 +2,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 public class Database{
@@ -12,6 +11,7 @@ public class Database{
     String db_user = "root";
     String db_password = "@s*Omu12";
     private Statement statement;
+    User user;
     Connection conn;
         
 
@@ -50,5 +50,18 @@ public class Database{
         insertStatement.executeUpdate();
 
     }
-}   
-  
+
+    public boolean loginUser(String email, String password) throws SQLException
+    {
+        PreparedStatement viewStatement = conn.prepareStatement("SELECT * from users");
+        ResultSet rs = viewStatement.executeQuery();
+        while (rs.next()) {
+            if((email.equals(rs.getString("Email")))&&password.equals(rs.getString("Password"))){
+           //CODE TO MAIN PANEL
+            return true;   
+            }
+        }
+        return false; 
+    }
+
+}
