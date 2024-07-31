@@ -1,7 +1,6 @@
 
-    import java.awt.*;
-//import java.awt.event.MouseEvent;
-//import java.awt.event.MouseListener;
+import java.awt.*;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
@@ -13,10 +12,9 @@ public class Login extends JFrame {
 
     public Login()
     {
-        JFrame frame = new JFrame("Login Page");
-        frame.setSize(1080, 720);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
+        setSize(1080, 720);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -58,7 +56,7 @@ public class Login extends JFrame {
         panel.add(Box.createVerticalStrut(20));
         panel.add(signupButton);
 
-        frame.add(panel, BorderLayout.EAST);
+        add(panel, BorderLayout.EAST);
 
         signupButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -70,8 +68,11 @@ public class Login extends JFrame {
                 {
                   if( database.loginUser(userName1, password))
                   {
-                    JOptionPane.showMessageDialog(null, "LOGGED IN");
+                    // JOptionPane.showMessageDialog(null, "LOGGED IN");
                     //--goto main page
+                    ChatPanel panel2 = new ChatPanel();
+                    dispose();
+                    add(panel2);
                   }
                   else
                   {
@@ -91,7 +92,7 @@ public class Login extends JFrame {
         leftpanel.setBorder(BorderFactory.createEmptyBorder(250, 30, 10, 0));
         leftpanel.setBackground(new Color(255, 203, 205)); // Custom background color
         leftpanel.setOpaque(true); // Ensure the background color is visible
-        leftpanel.setPreferredSize(new Dimension(520, frame.getHeight())); // Set the preferred size
+        leftpanel.setPreferredSize(new Dimension(520, getHeight())); // Set the preferred size
         JLabel welcome = new JLabel("WELCOME BACK!",40,Color.WHITE,Font.BOLD);
         JLabel welcome1= new JLabel("<html>TO KEEP CONNECTED WITH US<br> PLEASE LOGIN</html>",20,Color.WHITE,Font.BOLD);
        
@@ -102,10 +103,10 @@ public class Login extends JFrame {
 
       
 
-       frame.add(leftpanel,BorderLayout.WEST);
+        add(leftpanel,BorderLayout.WEST);
 
 
-        frame.setVisible(true);
+        setVisible(true);
 
     }
 
@@ -228,7 +229,10 @@ public class Login extends JFrame {
     }
 
      public static void main(String[] args) {
-        new Login();
+        
+        SwingUtilities.invokeLater(() -> {
+            new Login();
+        });
      }
 
 

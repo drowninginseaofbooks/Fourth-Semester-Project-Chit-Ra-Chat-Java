@@ -12,8 +12,6 @@ public class Canvas extends JPanel{
     private int xPos, yPos, STROKE_SIZE=8, width , height;
 
     public Canvas(int width, int height){
-        super();
-
         this.width = width;
         this.height = height;
 

@@ -1,4 +1,3 @@
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -6,38 +5,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 public class Database{
+
+    String username;
    
-    String URL = "jdbc:mysql://localhost:3306/ChitRaChat_DB";
-    String db_user = "root";
-    String db_password = "Animefreak@jiyagun1";
+    private String URL = "jdbc:mysql://localhost:3306/ChitRaChat_DB";
+    private String db_user = "root";
+    private String db_password = "Animefreak@jiyagun1";
     private Statement statement;
-    User user;
-    Connection conn;
+    // User user;
+    private Connection conn;
         
 
     public Database(){
-        try {
             try {
-                //loading the driver to the sql
+                // Example for MySQL
                 Class.forName("com.mysql.cj.jdbc.Driver");
-            } 
-
-            catch (ClassNotFoundException e) 
-            {
-                e.printStackTrace();
+                conn = DriverManager.getConnection(URL, db_user, db_password);
+            } catch (ClassNotFoundException e) {
+                System.out.println("Database driver not found.");
+                // e.printStackTrace();
+            } catch (SQLException e) {
+                System.out.println("Failed to establish a database connection.");
+                // e.printStackTrace();
             }
-
-          //creating connection to betn sql database and driver
-          conn=DriverManager.getConnection(URL, db_user, db_password);
-            
-        } 
-
-        catch (SQLException e) 
-        {
-       
-           e.printStackTrace();
-        }
-    } 
+} 
 
     public void signUser(String firstName, String lastName, String email, String userName,String password) throws SQLException
     {
@@ -58,10 +49,15 @@ public class Database{
         while (rs.next()) {
             if(((email.equals(rs.getString("Email"))) || email.equals(rs.getString("UserName"))) && password.equals(rs.getString("Password"))){
            //CODE TO MAIN PANEL
-            return true;   
+                this.username = rs.getString("UserName");
+                return true;   
             }
         }
         return false; 
+    }
+
+    public Connection getConnection(){
+        return conn;
     }
 
 }

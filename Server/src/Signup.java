@@ -1,11 +1,8 @@
 import java.awt.*;
-//import java.awt.event.MouseEvent;
-//import java.awt.event.MouseListener;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.sql.SQLException;
 
 public class Signup extends JFrame {
@@ -134,6 +131,7 @@ public class Signup extends JFrame {
                         try{
                             database.signUser(fName, lName, email, username,password);
                             JOptionPane.showMessageDialog(null, "SUCCESSFULLY REGISTERED");     
+                            dispose();
                             new App();
                         }catch( SQLException e1){
                             e1.printStackTrace();
@@ -165,11 +163,11 @@ public class Signup extends JFrame {
 
     public class JTextField extends javax.swing.JTextField {
         private Shape shape;
-        private String hint;
+        //private String hint;
 
         public JTextField(String hint) {
             super();
-            this.hint = hint;
+            //this.hint = hint;
             setFont(new Font("Sergoe UI", Font.BOLD, 20));
             setOpaque(false);
             setText(hint);
@@ -217,11 +215,11 @@ public class Signup extends JFrame {
 
     public class JPasswordField extends javax.swing.JPasswordField {
         private Shape shape;
-        private String hint;
+        //private String hint;
 
         public JPasswordField(String hint) {
             super();
-            this.hint = hint;
+            //this.hint = hint;
             setFont(new Font("Sergoe UI", Font.BOLD, 20));
             setOpaque(false);
             setText(hint);

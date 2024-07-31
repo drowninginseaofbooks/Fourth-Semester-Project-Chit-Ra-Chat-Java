@@ -4,11 +4,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class LoginRegisterPanel extends JPanel{
-
-    JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(LoginRegisterPanel.this);
-    
     LoginRegisterPanel(){
-        
         this.setBackground(Color.BLACK);
 
         setLayout(new GridBagLayout());
@@ -48,8 +44,6 @@ public class LoginRegisterPanel extends JPanel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 Login login = new Login();
-                // new ChatPanel().dispose();
-                // topFrame.dispose();
                 add(login);
             }
 
@@ -70,7 +64,6 @@ public class LoginRegisterPanel extends JPanel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 Signup signup = new Signup();
-                topFrame.dispose();
                 add(signup);    
             }
 
