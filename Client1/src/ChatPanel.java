@@ -50,8 +50,7 @@ public class ChatPanel extends JFrame {
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        // Add a DocumentListener to the JTextArea to make the scroll bar follow the
-        // text
+        // Add a DocumentListener to the JTextArea to make the scroll bar follow the text
         textArea.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -91,14 +90,12 @@ public class ChatPanel extends JFrame {
             }
         });
 
-        // Create a new JButton
         send = new JButton("SEND");
 
-        // Add action listener to the button
         send.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Append text to the JTextArea
+
                 msgIn = textField.getText();
                 msgOut = textField.getText();
                 try {
@@ -149,19 +146,12 @@ public class ChatPanel extends JFrame {
             }
         });
 
-        // Add the JTextField and JButton to the panel
         panel.add(textField);
         panel.add(send);
         panel.add(paint, BorderLayout.NORTH);
-
-        // Add the JScrollPane (which contains the JTextArea) to the center of the
-        // JFrame
         frame.add(scrollPane, BorderLayout.CENTER);
-
-        // Add the panel to the bottom of the JFrame
         frame.add(panel, BorderLayout.SOUTH);
 
-        // Make the JFrame visible
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

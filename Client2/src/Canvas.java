@@ -1,17 +1,21 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Canvas extends JPanel{
-    
+public class Canvas extends JPanel {
     private List<ColorPoint> currentPath;
     private Color color;
-    private int xPos, yPos, STROKE_SIZE=8, width , height;
+    private int xPos, yPos, STROKE_SIZE = 8, width, height;
+    private BufferedImage image;
+    private Graphics2D g2d;
 
-    public Canvas(int width, int height){
+    public Canvas(int width, int height) {
         this.width = width;
         this.height = height;
 
@@ -20,70 +24,77 @@ public class Canvas extends JPanel{
         setBackground(Color.WHITE);
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
+        // Create a BufferedImage and get its Graphics2D context
+        image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        g2d = image.createGraphics();
+        g2d.setColor(Color.WHITE);
+        g2d.fillRect(0, 0, width, height);
+
         MouseAdapter ma = new MouseAdapter() {
 
             @Override
-            public void mouseReleased(MouseEvent e) {
-                // TODO Auto-generated method stub
-                super.mouseReleased(e);
-            }
-
-            @Override
             public void mousePressed(MouseEvent e) {
-                // TODO Auto-generated method stub
                 xPos = e.getX();
                 yPos = e.getY();
 
-                Graphics g = getGraphics();
-                g.setColor(color);
-                g.fillRect(xPos, yPos, STROKE_SIZE, STROKE_SIZE);
-                g.dispose();
+                g2d.setColor(color);
+                g2d.fillRect(xPos, yPos, STROKE_SIZE, STROKE_SIZE);
 
                 currentPath = new ArrayList<>(25);
                 currentPath.add(new ColorPoint(xPos, yPos, color));
+                repaint();
             }
 
             @Override
             public void mouseDragged(MouseEvent e) {
-                // TODO Auto-generated method stub
                 xPos = e.getX();
                 yPos = e.getY();
 
-                //enables to draw a line
-                Graphics2D g2D = (Graphics2D) getGraphics();
-                g2D.setColor(color);
+                g2d.setColor(color);
+                if (!currentPath.isEmpty()) {
+                    ColorPoint prevPoint = currentPath.get(currentPath.size() - 1);
+                    g2d.setStroke(new BasicStroke(STROKE_SIZE));
 
-                if(!currentPath.isEmpty()){
-                    ColorPoint prevPoint = currentPath.get(currentPath.size()-1);
-                    g2D.setStroke(new BasicStroke(STROKE_SIZE));
-
-                    //connect two points
-                    g2D.drawLine(prevPoint.getX(), prevPoint.getY(), xPos, yPos);
+                    g2d.drawLine(prevPoint.getX(), prevPoint.getY(), xPos, yPos);
                 }
-                g2D.dispose();
 
-                ColorPoint nexPoint = new ColorPoint(e.getX(), e.getY(), color);
-                currentPath.add(nexPoint);
+                currentPath.add(new ColorPoint(xPos, yPos, color));
+                repaint();
             }
-            
         };
+
         addMouseListener(ma);
         addMouseMotionListener(ma);
     }
 
-    public void setColor(Color color){
+    public void saveImage(String filePath) {
+        try {
+            File file = new File(filePath);
+            ImageIO.write(image, "png", file);
+            JOptionPane.showMessageDialog(this, "IMAGE SAVED: " + filePath);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "FAILED TO SAVE IMAGE!");
+        }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, null);
+    }
+
+    public void setColor(Color color) {
         this.color = color;
     }
 
-    public void resetCanvas(){
-        Graphics g = getGraphics();
-        g.clearRect(0, 0, width, height);
-        g.dispose();
-
-        currentPath = null;
-
+    public void resetCanvas() {
+        g2d.setColor(Color.WHITE);
+        g2d.fillRect(0, 0, width, height);
         repaint();
-        revalidate();
     }
 
+    public BufferedImage getImage() {
+        return image;
+    }
 }

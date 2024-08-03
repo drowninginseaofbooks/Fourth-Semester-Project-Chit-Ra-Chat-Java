@@ -1,10 +1,21 @@
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
+
 public class Paint extends JFrame{
+
+    private BufferedImage image;
+    private Graphics2D g2d;
+
+
     public Paint(){
         
         JPanel canvasPanel = new JPanel();
@@ -17,6 +28,11 @@ public class Paint extends JFrame{
         //Create Canvas
         Canvas canvas = new Canvas(720, 700);
         add(canvas);
+
+        image = new BufferedImage(720, 720, BufferedImage.TYPE_INT_ARGB);
+        g2d = image.createGraphics();
+        g2d.setColor(Color.WHITE);
+        g2d.fillRect(0, 0, 720, 720);
 
         //Color Pallet
         JButton chooseColorButton = new JButton("COLORS");
@@ -50,16 +66,16 @@ public class Paint extends JFrame{
 
         this.add(clear);
 
-        JButton send = new JButton("SEND");
-        springLayout.putConstraint(SpringLayout.WEST, send, 639, SpringLayout.WEST, canvasPanel);
-        send.addActionListener(new ActionListener() {
+        JButton save = new JButton("SAVE");
+        springLayout.putConstraint(SpringLayout.WEST, save, 639, SpringLayout.WEST, canvasPanel);
+        save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               //send panel drawn 
+                canvas.saveImage("drawing.png");
             }
         });
 
-        this.add(send);
+        this.add(save);
 
 
         setSize(720, 720);
@@ -67,6 +83,7 @@ public class Paint extends JFrame{
         setLocationRelativeTo(null);
         setResizable(false);
     }
+
     public static void main(String[] args) {
         new Paint();
     }
